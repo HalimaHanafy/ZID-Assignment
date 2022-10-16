@@ -1,10 +1,6 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import styled from '@emotion/native';
-
 import {Typography} from './typography';
-
-//
-//
 
 export const CartQuantity: React.FC<{
   quantity: any;
@@ -33,8 +29,6 @@ export const CartQuantity: React.FC<{
   );
 };
 
-//
-//
 
 const QuantityButton = styled.TouchableHighlight({
   alignItems: 'center',

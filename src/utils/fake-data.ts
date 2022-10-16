@@ -2,8 +2,6 @@ import {faker} from '@faker-js/faker';
 
 import {IListItem} from '../screens/list';
 
-//
-//
 
 const list_data: IListItem[] = [];
 
@@ -12,7 +10,7 @@ for (let index = 0; index < 1500; index++) {
   const priceInt = parseFloat(faker.commerce.price());
 
   list_data.push({
-    id: index,
+    id: index.toString(),
     name: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
     price: price,
