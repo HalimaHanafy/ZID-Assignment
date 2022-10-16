@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {ScrollView} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
@@ -10,13 +10,13 @@ export interface IListItem {
   name: string;
   description: string;
   price: string;
-  salePrice: any;
+  salePrice: string;
   brand: string;
   model:string;
   battery:string;
 }
 
-const ListScreen = () => {
+const ListScreen: FC = () => {
   return (
     <SafeAreaView edges={['top', 'bottom']}>
       <ScrollView contentContainerStyle={{paddingHorizontal: 16}}>

@@ -2,13 +2,13 @@ import {faker} from '@faker-js/faker';
 
 import {IListItem} from '../screens/list';
 
-const list_data: IListItem[] = [];
+const listData: IListItem[] = [];
 
-for (let index = 0; index < 1500; index++) {
+for (let index = 0; index < 1500; index+= 1) {
   const price = faker.commerce.price();
   const priceInt = parseFloat(faker.commerce.price());
 
-  list_data.push({
+  listData.push({
     id: index.toString(),
     name: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
@@ -23,4 +23,4 @@ for (let index = 0; index < 1500; index++) {
   });
 }
 
-export default list_data;
+export default listData;

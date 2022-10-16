@@ -4,12 +4,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import Stack from './src/stack';
 import { GeneralLightTheme } from './theme/LightTheme';
 
-const App = () => {
+export default function App() {
+  
   return (
     <NavigationContainer theme={GeneralLightTheme}>
       <Stack />
     </NavigationContainer>
   );
-};
-
-export default App;
+}

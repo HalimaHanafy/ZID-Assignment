@@ -15,7 +15,6 @@ declare module '@react-navigation/native' {
 
     export type ThemeColor = string;
 
-
     export declare type ThemeColors = {
         primary: string;
         background: string;

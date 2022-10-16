@@ -1,8 +1,22 @@
 import React from 'react';
 import styled from '@emotion/native';
-
-import {Typography} from './typography';
 import { useTheme } from '@react-navigation/native';
+import {Typography} from './typography';
+
+const DetailsLineContainer = styled.View({
+  marginVertical: 5,
+  flexDirection: 'row',
+});
+
+const DetailsLineContent = styled(Typography)({
+  flex: 1,
+  textAlign: 'right',
+});
+
+DetailsLineContent.defaultProps = {
+  fontSize: 14,
+};
+
 
 export const DetailsLine: React.FC<{
   label?: React.ReactNode;
@@ -20,18 +34,7 @@ export const DetailsLine: React.FC<{
     </DetailsLineContainer>
   );
 };
-
-
-const DetailsLineContainer = styled.View({
-  marginVertical: 5,
-  flexDirection: 'row',
-});
-
-const DetailsLineContent = styled(Typography)({
-  flex: 1,
-  textAlign: 'right',
-});
-
-DetailsLineContent.defaultProps = {
-  fontSize: 14,
+DetailsLine.defaultProps={
+  label:''
 };
+

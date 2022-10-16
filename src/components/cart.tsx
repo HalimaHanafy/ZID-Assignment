@@ -1,11 +1,9 @@
 import React from 'react';
-import styled from '@emotion/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-
-import {CartQuantity} from './cart-quantity';
-import {Typography} from './typography';
 import {Alert} from 'react-native';
 import {useTheme} from '@react-navigation/native';
+import {CartQuantity} from './cart-quantity';
+import {Typography} from './typography';
 import {CartContainer} from './cart-container';
 import {BuyButton} from './Button/buy-button';
 
