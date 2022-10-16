@@ -7,10 +7,7 @@ import {Typography} from '../../../components/typography';
 import {RootStackParamList} from '../../../stack';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {IListItem} from '../index';
-import { Avatar } from '../../../components/avatar';
-
-//
-//
+import {Avatar} from '../../../components/avatar';
 
 const thumbnailSize = 600;
 
@@ -21,30 +18,36 @@ export const ListItem: React.FC<{item: IListItem}> = ({item}) => {
     >();
 
   return (
-    <ListItemContainer onPress={() => nav.navigate('Itemscreen', item)}>
-      <Avatar style={styles.image} source={{uri: getImage(thumbnailSize, item.id)}} />
+    <ListItemContainer onPress={() => nav.navigate('ItemScreen', item)}>
+      <Avatar
+        style={styles.image}
+        source={{uri: getImage(thumbnailSize, item.id)}}
+      />
 
       <View style={styles.flex}>
         <Typography weight="medium">{item.name}</Typography>
         {!item.salePrice ? (
-          <Typography style={item.salePrice ? styles.discounted : undefined}>SAR {item.price}</Typography>
+          <Typography style={item.salePrice ? styles.discounted : undefined}>
+            SAR {item.price}
+          </Typography>
         ) : null}
 
         {item.salePrice ? (
           <Typography color="#DA2121">
-            <Typography style={item.salePrice ? styles.discounted : undefined}>SAR {item.price}</Typography>
+            <Typography style={item.salePrice ? styles.discounted : undefined}>
+              SAR {item.price}
+            </Typography>
             {'  '}SAR {item.salePrice}
           </Typography>
         ) : null}
 
-        <Typography fontSize={14} color="#545454">Brand: {item.name}</Typography>
+        <Typography fontSize={14} color="#545454">
+          Brand: {item.name}
+        </Typography>
       </View>
     </ListItemContainer>
   );
 };
-
-//
-//
 
 const ListItemContainer = styled.TouchableOpacity({
   paddingTop: 10,
@@ -54,9 +57,6 @@ const ListItemContainer = styled.TouchableOpacity({
   borderBottomWidth: 1,
   flexDirection: 'row',
 });
-
-//
-//
 
 const styles = StyleSheet.create({
   flex: {

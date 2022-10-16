@@ -19,7 +19,7 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 const Stack = () => {
   return (
     <RootStack.Navigator
-      initialRouteName="ListScreens"
+      initialRouteName="ListScreen"
       screenOptions={{
         headerShadowVisible: false,
         headerBackTitle: '',
