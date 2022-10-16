@@ -1,9 +1,10 @@
-import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
-import ListScreen, {IListItem} from './screens/list';
-import {Item} from './item';
-import {ThemeFont} from './components/typography';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ListScreen, { IListItem } from './screens/list';
+import { Item } from './item';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { ThemeFont } from './components/typography';
+import { TouchableOpacity } from 'react-native';
+import { useNavigation, useTheme } from '@react-navigation/native';
 
 export type RootStackParamList = {
   ListScreen: undefined;
@@ -13,6 +14,9 @@ export type RootStackParamList = {
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const Stack = () => {
+  const nav = useNavigation();
+  const { colors } = useTheme();
+  
   return (
     <RootStack.Navigator
       initialRouteName="ListScreen"
@@ -24,18 +28,29 @@ const Stack = () => {
           ...(ThemeFont.medium as any),
         },
         contentStyle: {
-          backgroundColor: '#eee',
+          backgroundColor: colors.background,
         },
       }}>
       <RootStack.Screen
         name="ListScreen"
         component={ListScreen}
-        options={{title: 'Items'}}
+        options={{ title: 'Items', headerTitleAlign: 'center' }}
       />
       <RootStack.Screen
         name="ItemScreen"
         component={Item}
-        options={{title: 'Item'}}
+        options={{
+          headerBackButtonMenuEnabled: true,
+          title: 'Item',
+          headerTitleAlign: 'center',
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => nav.goBack()
+              }>
+              <Icon name="chevron-back" size={30} color={colors.blueColor} />
+            </TouchableOpacity>
+          )
+        }}
       />
     </RootStack.Navigator>
   );

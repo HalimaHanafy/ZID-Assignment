@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useTheme} from '@react-navigation/native';
 import styled from '@emotion/native';
 import {getImage} from '../../../utils/image';
 import {Typography} from '../../../components/typography';
@@ -16,37 +16,34 @@ export const ListItem: React.FC<{item: IListItem}> = ({item}) => {
     useNavigation<
       NativeStackNavigationProp<RootStackParamList, 'ListScreen'>
     >();
-
+    const {colors}= useTheme();
   return (
     <ListItemContainer onPress={() => nav.navigate('ItemScreen', item)}>
       <Avatar
         style={styles.image}
         source={{uri: getImage(thumbnailSize, item.id)}}
       />
-
       <View style={styles.flex}>
-        <Typography weight="medium">{item.name}</Typography>
+        <Typography weight="medium" color={colors.text}>{item.name}</Typography>
         {!item.salePrice ? (
-          <Typography style={item.salePrice ? styles.discounted : undefined}>
+          <Typography color={colors.text} style={item.salePrice ? styles.discounted : undefined}>
             SAR {item.price}
           </Typography>
         ) : null}
-
         {item.salePrice ? (
-          <Typography color="#DA2121">
-            <Typography style={item.salePrice ? styles.discounted : undefined}>
+          <Typography color={colors.redColor}>
+            <Typography color={colors.text} style={item.salePrice ? styles.discounted : undefined}>
               SAR {item.price}
             </Typography>
             {'  '}SAR {item.salePrice}
           </Typography>
         ) : null}
-
-        <Typography fontSize={14} color="#545454">
+        <Typography fontSize={14} color={colors.textGray}>
           Brand: {item.name}
         </Typography>
       </View>
     </ListItemContainer>
-  );
+);
 };
 
 const ListItemContainer = styled.TouchableOpacity({

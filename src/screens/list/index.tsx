@@ -8,10 +8,12 @@ import {ListItem} from './components/item';
 export interface IListItem {
   id: string;
   name: string;
-  description: String;
+  description: string;
   price: string;
   salePrice: any;
   brand: string;
+  model:string;
+  battery:string;
 }
 
 const ListScreen = () => {

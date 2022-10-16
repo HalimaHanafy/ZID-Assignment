@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Dimensions, ScrollView} from 'react-native';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute, useTheme} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import styled from '@emotion/native';
 
@@ -24,57 +24,54 @@ export const Item = () => {
       NativeStackNavigationProp<RootStackParamList, 'ListScreen'>
     >();
   const {params} = useRoute<RouteProp<RootStackParamList, 'ItemScreen'>>();
-
   const [quantity, setQuantity] = useState<number>(5);
+  const { colors } = useTheme();
 
-  if (!params) {
-    return <Typography>Loading ...</Typography>;
-  }
-
-  nav.setOptions({
-    title: params.name,
-  });
-
+  useEffect(() => {
+    nav.setOptions({
+      title: params?.name,
+    });
+  }, [])  
   return (
     <React.Fragment>
       <ScrollView>
         <Container>
           <ItemImage
-            source={{uri: getImage(900, params.id)}}
+            source={{uri: getImage(900, params?.id)}}
             size={Dimensions.get('screen').width * 0.9}
           />
         </Container>
 
         <Container>
-          <Typography fontSize={18} weight="semiBold">
-            {params.name}
+          {!params&&(<Typography>Loading ...</Typography>)}
+          <Typography color={colors.text} fontSize={18} weight="semiBold">
+            {params?.name}
           </Typography>
 
-          {params.salePrice ? (
-            <Typography fontSize={18} color="red">
+          {params?.salePrice ? (
+            <Typography fontSize={18} color={colors.redColor}>
               <ItemDiscountedPrice>SAR {params.price}</ItemDiscountedPrice>
               {'  '}
               SAR {params.price}
             </Typography>
           ) : (
-            <Typography fontSize={18}>SAR {params.price}</Typography>
+            <Typography  fontSize={18}>SAR {params?.price}</Typography>
           )}
         </Container>
-
         <Container>
-          <Typography>{params.description}</Typography>
+          <Typography fontSize={16} color={colors.text}>{params?.description}</Typography>
         </Container>
 
         <Container>
           <DetailsTitle>Details</DetailsTitle>
-          <DetailsLine label="Brand">{params?.brand || ''}</DetailsLine>
+          <DetailsLine label="Brand">{params?.brand||''}</DetailsLine>
           <DetailsLine label="Color">{SPEC_1}</DetailsLine>
           <DetailsLine label="SKU">{SPEC_2}</DetailsLine>
-
           <Typography weight="medium" />
-          <Typography weight="medium">Specifications</Typography>
-          <DetailsLine label="Type">{SPEC_3}</DetailsLine>
+          <Typography weight="medium"  color={colors.text}>Specifications</Typography>
           <DetailsLine label="Weight">{`${SPEC_4} KG`}</DetailsLine>
+          <DetailsLine label="Model">{params?.model||''}</DetailsLine>
+          <DetailsLine label="Battery">{`${params?.battery}`}</DetailsLine>
         </Container>
       </ScrollView>
 
@@ -82,9 +79,6 @@ export const Item = () => {
     </React.Fragment>
   );
 };
-
-//
-//
 
 const ItemImage = styled.Image<{size: number}>(props => ({
   width: props.size,

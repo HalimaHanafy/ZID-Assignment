@@ -4,6 +4,7 @@ import {Typography} from './typography';
 
 export const DetailsTitle = styled(Typography)({
   marginTop: 12,
+  color: '#000000',
 });
 
 DetailsTitle.defaultProps = {
